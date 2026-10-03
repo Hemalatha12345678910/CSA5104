@@ -1,0 +1,16 @@
+import math
+text = input("Enter plaintext: ")
+a = int(input("Enter a: "))
+b = int(input("Enter b: "))
+if math.gcd(a, 26) != 1:
+    print("Invalid value of a")
+else:
+    result = ""
+    for ch in text.upper():
+        if ch.isalpha():
+            p = ord(ch) - 65
+            c = (a * p + b) % 26
+            result += chr(c + 65)
+        else:
+            result += ch
+    print("Encrypted text:", result)
