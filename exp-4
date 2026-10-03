@@ -1,0 +1,14 @@
+def vigenere(text, key):
+    result = ""
+    key = key.upper()
+    j = 0
+    for ch in text.upper():
+        if ch.isalpha():
+            result += chr((ord(ch) - 65 + ord(key[j]) - 65) % 26 + 65)
+            j = (j + 1) % len(key)
+        else:
+            result += ch
+    return result
+text = input("Enter plaintext: ")
+key = input("Enter key: ")
+print("Encrypted text:", vigenere(text, key))
