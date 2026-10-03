@@ -1,0 +1,18 @@
+def substitution_cipher(text, key):
+    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    result = ""
+    for ch in text.upper():
+        if ch in alphabet:
+            index = alphabet.index(ch)
+            result += key[index]
+        else:
+            result += ch
+    return result
+alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+text = input("Enter the plaintext: ")
+key = input("Enter the ciphertext alphabet: ").upper()
+if len(key) == 26 and len(set(key)) == 26:
+    encrypted = substitution_cipher(text, key)
+    print("Encrypted text:", encrypted)
+else:
+    print("Invalid key! Enter 26 unique letters.")
