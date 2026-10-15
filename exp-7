@@ -1,0 +1,27 @@
+import math
+import string
+ciphertext = input("Enter ciphertext: ").upper()
+alphabet = string.ascii_uppercase
+m = 26
+c1, p1 = 1, 4
+c2, p2 = 20, 19
+found = False
+for a in range(1, 26):
+    if math.gcd(a, 26) == 1:
+        b = (c1 - a * p1) % 26
+        if (a * p2 + b) % 26 == c2:
+            a_inv = pow(a, -1, 26)
+            plaintext = ""
+            for ch in ciphertext:
+                if ch in alphabet:
+                    c = ord(ch) - ord('A')
+                    p = (a_inv * (c - b)) % 26
+                    plaintext += chr(p + ord('A'))
+                else:
+                    plaintext += ch
+            print("Decrypted text:", plaintext)
+            print("Affine key:", a, b)
+            found = True
+            break
+if not found:
+    print("No valid key for these frequency assumptions.")
